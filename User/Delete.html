@@ -1,0 +1,35 @@
+﻿<div ng-controller="DeleteController">
+    <h3>{{ title }}</h3>
+    <hr />
+    <form role="form" style="max-width: 500px;">
+        <strong class="error">{{ error }}</strong>
+        <div class="form-group">
+            <label>{{nombre}}</label>
+            <label>
+                nombre</label>
+
+            <label>{{nombre}}</label>
+        </div>
+        <div class="form-group">
+            <label>
+                Cargo:</label>
+            <label>{{cargo}}</label>
+        </div>
+        <div class="form-group">
+            <label for="Estado">
+                Country:</label>
+            <label>{{selectedCountry}}</label>
+        </div>
+
+        <div class="form-group">
+            <label>
+                City:</label>
+         <label>{{selectedCity}}</label>
+        </div>
+
+        <a href="#/list" class="btn btn-info">Back to List</a>
+        <button type="submit" class="btn btn-default" ng-click="delete()">
+            Submit  
+        </button>
+    </form>
+</div>

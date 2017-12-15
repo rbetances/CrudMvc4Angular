@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="db_escuelaModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="db_escuelaModelStoreContainer">
+    <EntitySet Name="cargo" EntityType="db_escuelaModel.Store.cargo" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="city" EntityType="db_escuelaModel.Store.city" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="country" EntityType="db_escuelaModel.Store.country" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="usuario" EntityType="db_escuelaModel.Store.usuario" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK__city__countryId__3D5E1FD2" Association="db_escuelaModel.Store.FK__city__countryId__3D5E1FD2">
+      <End Role="country" EntitySet="country" />
+      <End Role="city" EntitySet="city" />
+    </AssociationSet>
+    <AssociationSet Name="FK__usuario__codigo___08EA5793" Association="db_escuelaModel.Store.FK__usuario__codigo___08EA5793">
+      <End Role="cargo" EntitySet="cargo" />
+      <End Role="usuario" EntitySet="usuario" />
+    </AssociationSet>
+    <AssociationSet Name="fk_city" Association="db_escuelaModel.Store.fk_city">
+      <End Role="city" EntitySet="city" />
+      <End Role="usuario" EntitySet="usuario" />
+    </AssociationSet>
+    <AssociationSet Name="fk_country" Association="db_escuelaModel.Store.fk_country">
+      <End Role="country" EntitySet="country" />
+      <End Role="usuario" EntitySet="usuario" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="cargo">
+    <Key>
+      <PropertyRef Name="codigo_cargo" />
+    </Key>
+    <Property Name="codigo_cargo" Type="int" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="city">
+    <Key>
+      <PropertyRef Name="id_city" />
+    </Key>
+    <Property Name="id_city" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="description" Type="varchar" MaxLength="100" />
+    <Property Name="countryId" Type="int" />
+  </EntityType>
+  <EntityType Name="country">
+    <Key>
+      <PropertyRef Name="id_country" />
+    </Key>
+    <Property Name="id_country" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="description" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="usuario">
+    <Key>
+      <PropertyRef Name="codigo_usuario" />
+    </Key>
+    <Property Name="codigo_usuario" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="varchar" MaxLength="50" />
+    <Property Name="codigo_cargo" Type="int" Nullable="false" />
+    <Property Name="id_country" Type="int" />
+    <Property Name="id_city" Type="int" />
+  </EntityType>
+  <Association Name="FK__city__countryId__3D5E1FD2">
+    <End Role="country" Type="db_escuelaModel.Store.country" Multiplicity="0..1" />
+    <End Role="city" Type="db_escuelaModel.Store.city" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="country">
+        <PropertyRef Name="id_country" />
+      </Principal>
+      <Dependent Role="city">
+        <PropertyRef Name="countryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__usuario__codigo___08EA5793">
+    <End Role="cargo" Type="db_escuelaModel.Store.cargo" Multiplicity="1" />
+    <End Role="usuario" Type="db_escuelaModel.Store.usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cargo">
+        <PropertyRef Name="codigo_cargo" />
+      </Principal>
+      <Dependent Role="usuario">
+        <PropertyRef Name="codigo_cargo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_city">
+    <End Role="city" Type="db_escuelaModel.Store.city" Multiplicity="0..1" />
+    <End Role="usuario" Type="db_escuelaModel.Store.usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="city">
+        <PropertyRef Name="id_city" />
+      </Principal>
+      <Dependent Role="usuario">
+        <PropertyRef Name="id_city" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_country">
+    <End Role="country" Type="db_escuelaModel.Store.country" Multiplicity="0..1" />
+    <End Role="usuario" Type="db_escuelaModel.Store.usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="country">
+        <PropertyRef Name="id_country" />
+      </Principal>
+      <Dependent Role="usuario">
+        <PropertyRef Name="id_country" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

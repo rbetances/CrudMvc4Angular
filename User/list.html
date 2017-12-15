@@ -1,0 +1,29 @@
+﻿<div ng-controller="ListController">
+    {{message}}
+        <div>
+        <a href="#/create"></a>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Codigo usuario</th>
+                <th>Nombre</th>
+                <th>Cargo</th>
+                <th>Country</th>
+                <th>City</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="user in Users">
+                <td>{{user.codigo_usuario}}</td>
+                <td>{{user.nombre}}</td>
+                <td>{{user.desc_cargo}}</td>
+                <td>{{user.country}}</td>
+                <td>{{user.city}}</td>
+                <td><a href="#/Edit/{{user.codigo_usuario}}">Edit</a></td>
+                <td><a href="#/Delete/{{user.codigo_usuario}}">Delete</a></td>
+            </tr>
+        </tbody>
+
+    </table>
+</div>
